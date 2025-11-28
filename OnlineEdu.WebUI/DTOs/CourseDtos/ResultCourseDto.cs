@@ -1,5 +1,4 @@
-﻿using OnlineEdu.DTO.DTOs.CourseCategoryDtos;
-using OnlineEdu.WebUI.DTO.CourseCategoryDtos;
+﻿using OnlineEdu.WebUI.DTO.CourseCategoryDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

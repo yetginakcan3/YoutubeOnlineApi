@@ -1,4 +1,4 @@
-﻿using OnlineEdu.DTO.DTOs.BlogDtos;
+﻿using OnlineEdu.WebUI.DTO.BlogDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
