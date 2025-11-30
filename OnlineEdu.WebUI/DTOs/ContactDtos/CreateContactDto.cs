@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineEdu.WebUI.DTO.ContactDtos
+namespace OnlineEdu.WebUI.DTOs.ContactDtos
 {
     public class CreateContactDto
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using OnlineEdu.WebUI.DTO.BlogDtos;
+using OnlineEdu.WebUI.DTOs.BlogDtos;
 using OnlineEdu.WebUI.DTOs.BlogCategoryDtos;
 using OnlineEdu.WebUI.Helpers;
 using OnlineEdu.WebUI.Validators;
