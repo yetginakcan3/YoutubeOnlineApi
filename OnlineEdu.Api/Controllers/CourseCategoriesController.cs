@@ -9,7 +9,7 @@ namespace OnlineEdu.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CourseCategoriesController(IGenericService<CourseCategory> _courseCategoryService, IMapper _mapper) : ControllerBase
+    public class CourseCategoriesController(ICourseCategoryService _courseCategoryService, IMapper _mapper) : ControllerBase
     {
         [HttpGet]
 
@@ -51,6 +51,24 @@ namespace OnlineEdu.Api.Controllers
             var value = _mapper.Map<CourseCategory>(updateCourseCategoryDto);
             _courseCategoryService.TUpdate(value);
             return Ok("Kurs Kategori Alanı Güncellendi");
+        }
+
+        [HttpGet("ShowOnHome/{id}")]
+
+        public IActionResult ShowOnHome (int id)
+        {
+            
+            _courseCategoryService.TShowOnHome(id);
+            return Ok("Ana Sayfada Gösteriliyor");
+        }
+
+        [HttpGet("DontShowOnHome/{id}")]
+
+        public IActionResult DontShowOnHome(int id)
+        {
+
+            _courseCategoryService.TDontShowOnHome(id);
+            return Ok("Ana Sayfada Gösterilmiyor");
         }
 
 
