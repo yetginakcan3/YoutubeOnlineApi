@@ -1,11 +1,11 @@
-﻿using OnlineEdu.WebUI.DTO.CourseCategoryDtos;
+﻿using OnlineEdu.WebUI.DTOs.CourseCategoryDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OnlineEdu.WebUI.DTO.CourseDtos
+namespace OnlineEdu.WebUI.DTOs.CourseDtos
 {
     public class ResultCourseDto
     {
