@@ -18,6 +18,11 @@ namespace OnlineEdu.Api.Extensions
 
           services.AddScoped<ICourseCategoryRepository, CourseCategoryRepository>();
           services.AddScoped<ICourseCategoryService, CourseCategoryManager>();
+
+          services.AddScoped<ICourseRepository, CourseRepository>();
+          services.AddScoped<ICourseService, CourseManager>();
+
+
         }
 
             
