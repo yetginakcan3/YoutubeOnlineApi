@@ -32,7 +32,12 @@ namespace OnlineEdu.WebUI.Services.UserServices
             }
 
             
-            return await userManager.CreateAsync (user, userRegisterDto.Password);           
+            var result = await userManager.CreateAsync (user, userRegisterDto.Password);
+            if (result.Succeeded) {
+                await userManager.AddToRoleAsync(user, "Student");
+                return result;
+            }
+            return result;
 
         }
 
