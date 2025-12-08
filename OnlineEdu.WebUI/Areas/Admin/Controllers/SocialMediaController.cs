@@ -25,8 +25,7 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
 
         [HttpGet]
         public  IActionResult CreateSocialMedia()
-        {
-            
+        {           
             return View();
         }
 
