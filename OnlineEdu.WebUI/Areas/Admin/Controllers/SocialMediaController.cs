@@ -19,8 +19,8 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
 
         public async Task<IActionResult> DeleteSocialMedia(int id)
         {
-            await _client.DeleteAsync($"SocialMedias/{id}");
-            return RedirectToAction(nameof(Index));
+            await _client.DeleteAsync("SocialMedias/" + id);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
