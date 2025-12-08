@@ -10,5 +10,6 @@ namespace OnlineEdu.DataAccess.Abstract
     public interface IBlogRepository : IRepository<Blog>
     {
         List<Blog> GetBlogWithCategories();
+        List<Blog> GetBlogWithCategoriesByWriterId(int id);
     }
 }

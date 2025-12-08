@@ -12,5 +12,7 @@ namespace OnlineEdu.DataAccess.Abstract
     {
        List<Blog> TGetBlogWithCategories();
 
+       List<Blog> TGetBlogWithCategoriesByWriterId(int id);
+
     }
 }
