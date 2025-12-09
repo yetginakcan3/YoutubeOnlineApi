@@ -17,6 +17,17 @@ namespace OnlineEdu.Api.Controllers
         public IActionResult Get()
         {
             var values = _blogService.TGetBlogWithCategories();
+            var blogs = _mapper.Map<List<ResultBlogDto>>(values);
+            return Ok(values);
+        }
+
+        [HttpGet("GetLast4Blogs")]
+
+        public IActionResult GetLast4Blogs()
+        {
+            var values = _blogService.TGetLast4BlogsWithCategories();
+            var blogs = _mapper.Map<List<ResultBlogDto>>(values);
+
             return Ok(values);
         }
 
