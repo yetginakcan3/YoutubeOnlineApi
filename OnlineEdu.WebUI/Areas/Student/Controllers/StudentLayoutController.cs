@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace OnlineEdu.WebUI.Areas.Student
+namespace OnlineEdu.WebUI.Areas.Student.Controllers
 {
-    public class CourseRegisterController : Controller
+    [Area("Student")]
+    public class StudentLayoutController : Controller
     {
         public IActionResult Index()
         {
