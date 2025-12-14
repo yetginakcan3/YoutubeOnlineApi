@@ -7,20 +7,19 @@ namespace OnlineEdu.WebUI.Controllers
     public class CourseController : Controller
     {
         private readonly HttpClient _client = HttpClientInstance.CreateClient();
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var courses = await _client.GetFromJsonAsync<List<ResultCourseDto>>("courses");
+            return View(courses);
         }
 
         public async Task<IActionResult> GetCoursesByCategoryId(int id)
         {
             var courses = await _client.GetFromJsonAsync<List<ResultCourseDto>>("courses/GetCoursesByCategoryId/" + id);
             var category = (from x in courses
-                                select new
-                                {
-                                    x.CourseCategory.CategoryName
-                                }).FirstOrDefault();
-            ViewBag.category = category.CategoryName;
+                                select   x.CourseCategory.CategoryName
+                                ).FirstOrDefault();
+            ViewBag.category = category;
             return View(courses);
         }
     }

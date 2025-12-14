@@ -3,11 +3,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.UserDtos;
-
+using OnlineEdu.DataAccess.Context;
 namespace OnlineEdu.WebUI.Services.UserServices
 {
-    public class UserService(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager,RoleManager<AppRole> roleManager, IMapper _mapper) : IUserService
+
+    public class UserService(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager,RoleManager<AppRole> roleManager, IMapper _mapper, OnlineEduContext _context) : IUserService
     {
+
+        
         public Task<bool> AssignRoleAsync(List<AssignRoleDto> assignRoleDto)
         {
             throw new NotImplementedException();
@@ -47,6 +50,15 @@ namespace OnlineEdu.WebUI.Services.UserServices
             var users = await userManager.Users.Include(x=>x.TeacherSocials).ToListAsync();
             var teachers = users.Where(user=>userManager.IsInRoleAsync(user,"Teacher").Result).OrderByDescending(x=>x.Id).Take(4).ToList();
             return _mapper.Map<List<ResultUserDto>>(teachers);
+        }
+
+        public async Task<List<ResultUserDto>> GetAllTeachers()
+        {
+            var teachers = await userManager.GetUsersInRoleAsync("Teacher");
+            var users = _context.Users.Include(x=>x.TeacherSocials).AsQueryable();
+            users = teachers.AsQueryable();
+           
+            return _mapper.Map<List<ResultUserDto>>(users.ToList());
         }
 
         public async Task<List<AppUser>> GetAllUserAsync()
