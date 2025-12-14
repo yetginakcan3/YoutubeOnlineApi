@@ -54,11 +54,10 @@ namespace OnlineEdu.WebUI.Services.UserServices
 
         public async Task<List<ResultUserDto>> GetAllTeachers()
         {
-            var teachers = await userManager.GetUsersInRoleAsync("Teacher");
-            var users = _context.Users.Include(x=>x.TeacherSocials).AsQueryable();
-            users = teachers.AsQueryable();
-           
-            return _mapper.Map<List<ResultUserDto>>(users.ToList());
+            var users = await userManager.Users.Include(x => x.TeacherSocials).ToListAsync();
+            var teachers = users.Where(user => userManager.IsInRoleAsync(user, "Teacher").Result).ToList();
+
+            return _mapper.Map<List<ResultUserDto>>(teachers);
         }
 
         public async Task<List<AppUser>> GetAllUserAsync()
