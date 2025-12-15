@@ -35,7 +35,7 @@ namespace OnlineEdu.Api.Controllers
 
         public IActionResult GetById(int id)
         {
-            var value = _blogService.TGetById(id);
+            var value = _blogService.TGetBlogWithCategory(id);
             return Ok(value);
         }
 

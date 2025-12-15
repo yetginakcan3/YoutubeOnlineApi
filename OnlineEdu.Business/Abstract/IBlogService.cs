@@ -11,6 +11,7 @@ namespace OnlineEdu.DataAccess.Abstract
     public interface IBlogService:IGenericService<Blog>
     {
        List<Blog> TGetBlogWithCategories();
+       Blog TGetBlogWithCategory(int id);
        List<Blog> TGetLast4BlogsWithCategories();
 
         List<Blog> TGetBlogWithCategoriesByWriterId(int id);
