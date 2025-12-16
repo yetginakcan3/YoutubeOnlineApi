@@ -82,5 +82,12 @@ namespace OnlineEdu.Api.Controllers
             return Ok(blogCount);
         }
 
+        [HttpGet("GetBlogsByCategoryId/{id}")]
+
+        public IActionResult GetBlogsByCategoryId(int id)
+        {
+            var blogs = _blogService.TGetBlogsByCategoryId(id);
+            return Ok(blogs);
+        }
     }
 }
