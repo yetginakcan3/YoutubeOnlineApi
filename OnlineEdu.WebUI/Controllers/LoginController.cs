@@ -16,10 +16,10 @@ namespace OnlineEdu.WebUI.Controllers
         public async Task<IActionResult> SignIn(UserLoginDto userLoginDto)
         {
             var userRole = await userService.LoginAsync(userLoginDto);
-            if (userRole=="Admin")
+            if (userRole == "Admin")
             {
 
-                return RedirectToAction("Index", "About", new { area = "Admin"});
+                return RedirectToAction("Index", "About", new { area = "Admin" });
 
             }
             if (userRole == "Teacher")
@@ -39,7 +39,13 @@ namespace OnlineEdu.WebUI.Controllers
                 ModelState.AddModelError("", "Email veya Şifre Hatalı");
                 return View();
             }
-
         }
+        public async Task<IActionResult> Logout()
+        {
+            await userService.LogoutAsync();
+            return RedirectToAction("Index","Home");
+        }
+
     }
-}
+    }
+
