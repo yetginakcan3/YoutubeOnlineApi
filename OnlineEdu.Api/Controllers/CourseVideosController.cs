@@ -33,7 +33,7 @@ namespace OnlineEdu.Api.Controllers
             public IActionResult Delete(int id)
             {
                 _courseVideoService.TDelete(id);
-                return Ok("Hakkımızda Alanı Silindi");
+                return Ok("Kurs Video Alanı Silindi");
             }
 
             [HttpPost]
@@ -42,7 +42,7 @@ namespace OnlineEdu.Api.Controllers
             {
                 var newValue = _mapper.Map<CourseVideo>(createCourseVideoDto);
                 _courseVideoService.TCreate(newValue);
-                return Ok("Yeni Kurs Videosu Alanı Oluşturuldu");
+                return Ok("Yeni Kurs Video Alanı Oluşturuldu");
             }
 
             [HttpPut]
@@ -51,7 +51,7 @@ namespace OnlineEdu.Api.Controllers
             {
                 var value = _mapper.Map<CourseVideo>(updateCourseVideoDto);
                 _courseVideoService.TUpdate(value);
-                return Ok("Hakkımda Alanı Güncellendi");
+                return Ok("Kurs Video Alanı Güncellendi");
             }
 
         }

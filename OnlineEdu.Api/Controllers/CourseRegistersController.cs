@@ -48,7 +48,7 @@ namespace OnlineEdu.Api.Controllers
             return Ok(value);
         }
 
-        [HttpGet("{id}")]
+        [HttpDelete("{id}")]
 
         public IActionResult DeleteCourseRegister(int id)
         {

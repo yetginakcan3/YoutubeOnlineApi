@@ -17,6 +17,7 @@ builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddDbContext<OnlineEduContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"));
+    options.UseLazyLoadingProxies();
 });
 
 builder.Services.AddControllers().AddJsonOptions(opt =>

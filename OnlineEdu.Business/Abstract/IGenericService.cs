@@ -17,6 +17,7 @@ namespace OnlineEdu.Business.Abstract
         void TUpdate(T entity);
         void TDelete(int id);
 
+
         int TCount();
 
         int TFilteredCount(Expression<Func<T, bool>> predicate);
