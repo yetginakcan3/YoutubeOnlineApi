@@ -1,4 +1,4 @@
-﻿using OnlineEdu.Api.Configurations;
+﻿
 using OnlineEdu.Business.Abstract;
 using OnlineEdu.Business.Concrete;
 using OnlineEdu.Business.Configurations;
@@ -33,6 +33,7 @@ namespace OnlineEdu.Api.Extensions
 
            services.Configure<JwtTokenOptions> (configuration.GetSection("TokenOptions"));
 
+           services.AddScoped<IJwtService, JwtService>();
 
 
 
