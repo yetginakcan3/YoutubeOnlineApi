@@ -1,0 +1,32 @@
+﻿@model List<ResultCourseVideoDto>
+@{
+    ViewData["Title"] = "CourseVideos";
+    Layout = "~/Areas/Student/Views/StudentLayout/Index.cshtml";
+    int count = 0;
+}
+
+
+
+<h2>Kurs Adı : <strong>@ViewBag.courseName</strong> </h2>
+
+<table class="table table-hover">
+    <tr>
+        <th>#</th>
+        <th>Video</th>
+   
+    </tr>
+    @foreach (var item in Model)
+    {
+        count++;
+        <tr>
+            <th>@item.VideoNumber</th>
+        
+                <iframe width="400" height="225" src="@item.VideoUrl" title="#85 AspNet Core 8 Web API OnlineEdu Projesi - Kurslara ait videoların listelenmesi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+             
+        </tr>
+    }
+</table>
+
+<br />
+
+<a href="/Student/CourseRegister/Index" class="btn btn-outline-primary">Kurslara Geri Dön</a>
