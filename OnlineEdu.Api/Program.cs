@@ -10,7 +10,7 @@ using System.Reflection;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddServiceExtensions();
+builder.Services.AddServiceExtensions(builder.Configuration);
 // Add services to the container.
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
