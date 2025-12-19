@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OnlineEdu.WebUI.DTOs.AboutDtos;
 using OnlineEdu.WebUI.Helpers;
 
 namespace OnlineEdu.WebUI.Controllers
 {
+    
     public class AboutController : Controller
     {
         private readonly HttpClient _client = HttpClientInstance.CreateClient();
