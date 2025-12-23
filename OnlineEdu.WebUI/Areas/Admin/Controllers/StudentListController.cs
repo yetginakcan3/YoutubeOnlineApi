@@ -2,17 +2,27 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OnlineEdu.Entity.Entities;
+using OnlineEdu.WebUI.DTOs.UserDtos;
 
 namespace OnlineEdu.WebUI.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Admin")]
     [Area("Admin")]
-    public class StudentListController(UserManager<AppUser> _userManager) : Controller
+    public class StudentListController : Controller
     {
-        public async Task<IActionResult> Index()
+
+
+
+    private readonly HttpClient _client;
+
+    public StudentListController(IHttpClientFactory clientFactory)
+    {
+        _client = clientFactory.CreateClient("EduClient");
+    }
+    public async Task<IActionResult> Index()
         {
-            var students = await _userManager.GetUsersInRoleAsync("Student");
-            return View(students);
-        }
+        var students = await _client.GetFromJsonAsync<List<ResultUserDto>>("users/StudentList");
+        return View(students);
+    }
     }
 }

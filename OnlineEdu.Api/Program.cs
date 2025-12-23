@@ -17,8 +17,13 @@ using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddServiceExtensions(builder.Configuration);
 // Add services to the container.
+
+
+
+builder.Services.AddServiceExtensions(builder.Configuration);
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.AddDbContext<OnlineEduContext>(options =>

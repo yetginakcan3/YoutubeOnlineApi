@@ -6,7 +6,7 @@ namespace OnlineEdu.WebUI.Services.TokenServices
     {
         public string GetUserToken => _contextAccessor.HttpContext.User.Claims.FirstOrDefault(x=> x.Type == "Token").Value;
 
-        public int GetUserId =>  int.Parse( _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        public int GetUserId =>  int.Parse( _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
 
         public string GetUserNameSurname => _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.Role).Value;
 

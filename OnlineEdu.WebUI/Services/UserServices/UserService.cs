@@ -4,13 +4,20 @@ using Microsoft.EntityFrameworkCore;
 using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.UserDtos;
 using OnlineEdu.DataAccess.Context;
+using OnlineEdu.WebUI.Models;
 namespace OnlineEdu.WebUI.Services.UserServices
 {
 
-    public class UserService(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager,RoleManager<AppRole> roleManager, IMapper _mapper, OnlineEduContext _context) : IUserService
+    public class UserService : IUserService
     {
 
-        
+        private readonly HttpClient _client;
+
+        public UserService(IHttpClientFactory clientFactory )
+        {
+            _client = clientFactory.CreateClient("EduClient");
+        }
+
         public Task<bool> AssignRoleAsync(List<AssignRoleDto> assignRoleDto)
         {
             throw new NotImplementedException();
@@ -60,9 +67,9 @@ namespace OnlineEdu.WebUI.Services.UserServices
             return _mapper.Map<List<ResultUserDto>>(teachers);
         }
 
-        public async Task<List<AppUser>> GetAllUserAsync()
+        public async Task<List<UserViewModel>> GetAllUserAsync()
         {
-            return await userManager.Users.ToListAsync();
+            return await _client.GetFromJsonAsync<List<UserViewModel>>("roleAssigns");
         }
 
         public async Task<int> GetTeacherCount()
@@ -74,6 +81,11 @@ namespace OnlineEdu.WebUI.Services.UserServices
         public async Task<AppUser> GetUserByIdAsync(int id)
         {
             return await userManager.Users.FirstOrDefaultAsync(x=>x.Id == id);
+        }
+
+        public async Task<List<AssignRoleDto>> GetUserForRoleAssign(int id)
+        {
+            return await _client.GetFromJsonAsync<List<AssignRoleDto>>("roleAssigns/" + id);
         }
 
         public async Task<string> LoginAsync(UserLoginDto userLoginDto)
