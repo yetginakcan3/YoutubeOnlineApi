@@ -11,10 +11,17 @@ namespace OnlineEdu.WebUI.Areas.Teacher.Controllers
     [Area("Teacher")]
     [Authorize(Roles = "Teacher")]
     
-        public class MySocialMediaController(ITokenService _tokenService) : Controller
+        public class MySocialMediaController: Controller
         {
-            private readonly HttpClient _client = HttpClientInstance.CreateClient();
-            public async Task<IActionResult> Index()
+        private readonly HttpClient _client;
+        private readonly ITokenService _tokenService;
+
+        public MySocialMediaController(IHttpClientFactory clientFactory, ITokenService tokenService)
+        {
+            _client = clientFactory.CreateClient("EduClient");
+            _tokenService = tokenService;
+        }
+        public async Task<IActionResult> Index()
             {
                 var userId = _tokenService.GetUserId;
                 var values = await _client.GetFromJsonAsync<List<ResultTeacherSocialDto>>("teacherSocials/byTeacherId/" + userId);
