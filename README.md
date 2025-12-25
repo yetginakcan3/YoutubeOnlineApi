@@ -12,4 +12,4 @@ Güvenlik: Identity kütüphanesi ile JWT-Token tabanlı ve Role-Based (Admin, T
 
 Best Practices: Repository Design Pattern, AutoMapper (Entity-DTO), FluentValidation ve Named HttpClient kullanımı.
 
-Bu projede beni en çok heyecanlandıran kısım; Admin, Eğitmen ve Öğrenci olmak üzere 3 farklı panelin birbiriyle entegre ve yetki bazlı sorunsuz çalışması oldu. Henüz production aşamasındadır. 
+Admin, Eğitmen ve Öğrenci olmak üzere birbiriyle entegre ve yetki bazlı çalışan 3 farklı panel. Henüz production aşamasındadır. 
