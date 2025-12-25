@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using OnlineEdu.WebUI.DTOs.CourseCategoryDtos;
 using OnlineEdu.WebUI.DTOs.CourseDtos;
 using OnlineEdu.WebUI.Helpers;
-
+using OnlineEdu.WebUI.Services.TokenServices;
 namespace OnlineEdu.WebUI.Areas.Admin.Controllers
 {
     [Authorize(Roles = "Admin")]
@@ -15,9 +15,11 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
     public class CourseController : Controller
     {
         private readonly HttpClient _client;
+        private readonly ITokenService _tokenService;
 
-        public CourseController(IHttpClientFactory clientFactory)
+        public CourseController(ITokenService tokenService, IHttpClientFactory clientFactory)
         {
+            _tokenService = tokenService;
             _client = clientFactory.CreateClient("EduClient");
         }
 
@@ -54,6 +56,8 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCourse(CreateCourseDto createCourseDto)
         {
+            var userId = _tokenService.GetUserId;
+            createCourseDto.AppUserId = userId;
             await _client.PostAsJsonAsync("Courses", createCourseDto);
             return RedirectToAction(nameof(Index));
         }
@@ -69,6 +73,8 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateCourse(UpdateCourseDto updateCourseDto)
         {
+            var userId = _tokenService.GetUserId;
+            updateCourseDto.AppUserId = userId;
             await _client.PutAsJsonAsync("Courses", updateCourseDto);
             return RedirectToAction(nameof(Index));
         }

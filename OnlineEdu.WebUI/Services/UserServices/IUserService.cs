@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.UserDtos;
 using OnlineEdu.WebUI.Models;
 
@@ -13,8 +12,7 @@ namespace OnlineEdu.WebUI.Services.UserServices
         Task<bool> CreateRoleAsync(UserRoleDto userRoleDto);
         Task<bool> AssignRoleAsync(List<AssignRoleDto> assignRoleDto);
         Task<List<UserViewModel>> GetAllUserAsync();
-        Task<List<ResultUserDto>> Get4Teachers();
-        Task<AppUser> GetUserByIdAsync(int id);
+        
         Task<List<AssignRoleDto>> GetUserForRoleAssign(int id);
         Task<int> GetTeacherCount();
         Task<List<ResultUserDto>> GetAllTeachers();

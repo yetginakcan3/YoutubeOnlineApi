@@ -50,6 +50,26 @@ namespace OnlineEdu.WebUI.Controllers
                     IsPersistent = true
                 };
 
+                await HttpContext.SignInAsync(
+            JwtBearerDefaults.AuthenticationScheme,
+            new ClaimsPrincipal(claimsIdentity),
+            authProps);
+
+                var role = claims.FirstOrDefault(x => x.Type == ClaimTypes.Role)?.Value;
+
+                if (role == "Admin")
+                {
+                    return RedirectToAction("Index", "About", new { area = "Admin" });
+                }
+                else if (role == "Teacher")
+                {
+                    return RedirectToAction("Index", "MyCourse", new { area = "Teacher" });
+                }
+                else if (role == "Student")
+                {
+                    return RedirectToAction("Index", "CourseRegister", new { area = "Student" });
+                }
+
                 return RedirectToAction("Index","Home");
             }
             ModelState.AddModelError("", "Kullanıcı Adı veya Şifre Hatalı");

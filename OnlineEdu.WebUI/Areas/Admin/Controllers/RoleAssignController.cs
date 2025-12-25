@@ -1,12 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using OnlineEdu.Entity.Entities;
 using OnlineEdu.WebUI.DTOs.UserDtos;
-using OnlineEdu.WebUI.Models;
 using OnlineEdu.WebUI.Services.UserServices;
-using System.Threading.Tasks;
 
 namespace OnlineEdu.WebUI.Areas.Admin.Controllers
 {
@@ -36,7 +31,7 @@ namespace OnlineEdu.WebUI.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> AssignRole(int id)
         {
-            var values = _userService.GetUserForRoleAssign(id);
+            var values = await _userService.GetUserForRoleAssign(id);
             return View(values);
         }
 

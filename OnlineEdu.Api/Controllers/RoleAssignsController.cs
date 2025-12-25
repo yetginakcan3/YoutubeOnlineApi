@@ -11,7 +11,7 @@ namespace OnlineEdu.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoleAssignsController(IUserService userService, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager,IHttpContextAccessor _contextAccessor) : ControllerBase
+    public class RoleAssignsController(IUserService userService, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager) : ControllerBase
     {
         [HttpGet]
 
@@ -45,6 +45,7 @@ namespace OnlineEdu.Api.Controllers
             foreach (var role in roles)
             {
                 var assignRole = new AssignRoleDto();
+                assignRole.UserId = user.Id;
 
                 assignRole.RoleId = role.Id;
                 assignRole.RoleName = role.Name;
@@ -59,7 +60,7 @@ namespace OnlineEdu.Api.Controllers
 
         public async Task<IActionResult> AssignRole(List<AssignRoleDto> assignRoleList)
         {
-            int userId = int.Parse(_contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value); 
+            int userId = assignRoleList.Select(x=>x.UserId).FirstOrDefault();
             var user = await userService.GetUserByIdAsync(userId);
 
             foreach (var item in assignRoleList)

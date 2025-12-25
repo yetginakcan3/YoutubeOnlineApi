@@ -12,7 +12,7 @@
     <textarea type="text" asp-for="CourseName" class="form-control" rows="3"></textarea>
     <br />
     <label>Fiyat</label>
-    <input type="text" asp-for="Price" class="form-control" />
+    <input type="number" asp-for="Price" class="form-control" />
     <br />
     <label>Kategori</label>
     <select asp-for="CourseCategoryId" class="form-control" asp-items="@ViewBag.courseCategories">
